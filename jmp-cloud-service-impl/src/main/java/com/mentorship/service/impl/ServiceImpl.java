@@ -1,7 +1,6 @@
 package com.mentorship.service.impl;
 
 import com.google.auto.service.AutoService;
-import com.mentorship.exception.EntityNotFoundException;
 import com.mentorship.jdbc.dao.BankCardDao;
 import com.mentorship.jdbc.dao.SubscriptionDao;
 import com.mentorship.jdbc.dao.UserDao;

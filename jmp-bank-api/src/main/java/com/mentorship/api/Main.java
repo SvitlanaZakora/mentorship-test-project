@@ -13,7 +13,6 @@ import com.mentorship.service.impl.ServiceImpl;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.ServiceLoader;
 import java.util.function.Predicate;
 
@@ -25,24 +24,21 @@ public class Main {
 
         List<User> users = service.getAllUsers();
 
-//        userDao.create(User.builder().name("Kvita").surname("Drozd").birthday(LocalDate.of(2000, 11, 11)).build());
-//        userDao.create(User.builder().name("Olena").surname("Drozd").birthday(LocalDate.of(1980, 8, 10)).build());
-//        userDao.create(User.builder().name("Taras").surname("Drozd").birthday(LocalDate.of(2001, 3, 3)).build());
-//        bankCardDao.create(BankCard.builder().number("2222222222").user(users.get(2)).build());
+        userDao.create(User.builder().name("Kvita").surname("Drozd").birthday(LocalDate.of(2000, 11, 11)).build());
+        userDao.create(User.builder().name("Olena").surname("Drozd").birthday(LocalDate.of(1980, 8, 10)).build());
+        userDao.create(User.builder().name("Taras").surname("Drozd").birthday(LocalDate.of(2001, 3, 3)).build());
+        bankCardDao.create(BankCard.builder().number("2222222222").user(users.get(2)).build());
 
-//        System.out.println(service.getAvgUsersAge());
-//        System.out.println(service.isPayableUser(users.get(0)));
-//        BankCard bankCard = bankCardDao.findByCardNumber("1111111111");
+        System.out.println(service.getAvgUsersAge());
+        System.out.println(service.isPayableUser(users.get(0)));
+        BankCard bankCard = bankCardDao.findByCardNumber("1111111111");
 
-
-
-
-//        service.subscribe(bankCard);
+        service.subscribe(bankCard);
         try {
             Subscription subscription = service.getSubscriptionByBankCardNumber("2222222222")
                     .orElseThrow(() -> new EntityNotFoundException("Subscription wasn`t found"));
-//
-//            System.out.println(subscription);
+
+            System.out.println(subscription);
         } catch (EntityNotFoundException e) {
             System.out.println(e.getMessage());
         }
