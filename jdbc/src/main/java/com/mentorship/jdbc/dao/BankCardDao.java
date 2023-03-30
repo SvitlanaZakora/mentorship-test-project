@@ -4,7 +4,7 @@ import com.mentorship.models.BankCard;
 
 public interface BankCardDao {
 
-    boolean create(BankCard bankCard);
+    BankCard create(BankCard bankCard);
 
     BankCard findByCardNumber(String cardNumber);
 

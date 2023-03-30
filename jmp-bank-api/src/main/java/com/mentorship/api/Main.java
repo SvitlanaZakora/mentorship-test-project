@@ -6,6 +6,7 @@ import com.mentorship.jdbc.dao.UserDao;
 import com.mentorship.jdbc.dao.impl.BankCardDaoImpl;
 import com.mentorship.jdbc.dao.impl.UserDaoImpl;
 import com.mentorship.models.BankCard;
+import com.mentorship.models.BankCardType;
 import com.mentorship.models.Subscription;
 import com.mentorship.models.User;
 import com.mentorship.service.Service;
@@ -23,11 +24,10 @@ public class Main {
         UserDao userDao = new UserDaoImpl();
 
         List<User> users = service.getAllUsers();
-
         userDao.create(User.builder().name("Kvita").surname("Drozd").birthday(LocalDate.of(2000, 11, 11)).build());
         userDao.create(User.builder().name("Olena").surname("Drozd").birthday(LocalDate.of(1980, 8, 10)).build());
         userDao.create(User.builder().name("Taras").surname("Drozd").birthday(LocalDate.of(2001, 3, 3)).build());
-        bankCardDao.create(BankCard.builder().number("2222222222").user(users.get(2)).build());
+        bankCardDao.create(BankCard.builder().number("2222222222").user(users.get(2)).bankCardType(BankCardType.DEBIT).build());
 
         System.out.println(service.getAvgUsersAge());
         System.out.println(service.isPayableUser(users.get(0)));
@@ -40,7 +40,7 @@ public class Main {
 
             System.out.println(subscription);
         } catch (EntityNotFoundException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }
 
         Predicate<Subscription> predicate = e -> e.getStartDate().isBefore(LocalDate.of(2023, 3, 26));
